@@ -1,0 +1,18 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each usuarios}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-title text-uppercase">
+                        {{username}}
+                    </p>
+                    <p class="m-2"> {{nombre_completo}} </p>
+                    <a href="" class="btn btn-secondary">Detalles</a>
+                    <a href="" class="btn btn-secondary">Reservas</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
