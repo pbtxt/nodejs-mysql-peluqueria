@@ -12,5 +12,12 @@ INSERT INTO estilistas
 VALUES
     ("Paola Becerra", "paola@gmail.com"),
     ("Haner Avella", "haner@gmail.com")
+
+ALTER TABLE agenda 
+    ADD hora_fin TIMESTAMP NOT NULL;
+
+ALTER TABLE reservas 
+    DROP hora_fin; 
+
     
 
