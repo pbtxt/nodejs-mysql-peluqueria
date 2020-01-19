@@ -20,4 +20,5 @@ ALTER TABLE reservas
     DROP hora_fin; 
 
     
-
+INSERT INTO agenda (id_reserva, id_estilista, fecha_reservada, hora_reservada, hora_fin)
+VALUES (1, 1, '2020-01-30 11:30', '11:30', '12:00:00')
