@@ -1,0 +1,20 @@
+.box {
+  border: 1px dotted red;
+}
+
+/* ***************** */
+/* *** index.hbs *** */
+/* ***************** */
+
+.imagen-inicial {
+    background-image: url("./images/tijeras-barba-capa.jpg");
+    background-size: cover;
+}
+
+.container-fluid.imagen-inicial{
+    height: 95vh ;
+}
+
+/* ********************* */
+/* *** FIN index.hbs *** */
+/* ********************* */
