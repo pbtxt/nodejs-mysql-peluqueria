@@ -1,25 +1,27 @@
+.box{
+  border: 2px dotted red;
+}
+
 #header {
   background-color: #c83699;
 }
 
 #header img {
-width: 80px;
-border: 2px solid #fae2ef;
-border-radius: 50px;
+  width: 80px;
+  border: 2px solid #fae2ef;
+  border-radius: 50px;
 }
 
 #main .carousel-inner img {
-max-height: 70vh;
-object-fit: conver;
+  max-height: 70vh;
+  object-fit: conver;
 }
 
 /* tratamientos */
 
-#tratamientos  .card img {
-max-width: 100%;
+#tratamientos .card img {
+  max-width: 100%;
 }
-
-
 
 /* Footer */
 
@@ -30,3 +32,7 @@ max-width: 100%;
 #footer a {
   color: white;
 }
+
+/* .img{
+  background-image: url('../images/carousel-1.jpg');
+} */
