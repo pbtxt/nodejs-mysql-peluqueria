@@ -1,36 +1,32 @@
-.box{
-  border: 2px dotted red;
-}
-
-#header {
-  background-color: #c83699;
+.box {
+	border: 2px dotted red;
 }
 
 #header img {
-  width: 80px;
-  border: 2px solid #fae2ef;
-  border-radius: 50px;
+	width: 80px;
+	border: 2px solid #fae2ef;
+	border-radius: 50px;
 }
 
 #main .carousel-inner img {
-  max-height: 70vh;
-  object-fit: conver;
+	max-height: 70vh;
+	object-fit: conver;
 }
 
 /* tratamientos */
 
 #tratamientos .card img {
-  max-width: 100%;
+	max-width: 100%;
 }
 
 /* Footer */
 
 #footer {
-  background-color: #c83699;
+	background-color: #c83699;
 }
 
 #footer a {
-  color: white;
+	color: white;
 }
 
 /* .img{
