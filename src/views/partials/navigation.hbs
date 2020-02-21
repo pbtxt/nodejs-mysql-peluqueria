@@ -1,35 +1,41 @@
 <nav id="header" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <a class="navbar-brand" href="#">
-        <img src="/images/logo.jpg" alt="fun2lash logo" />
-        Fun2Lash</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img src="/images/logo.jpg" alt="fun2lash logo" />
+                Fun2Lash</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <style>
+        {{!-- <style>
         ul li a {
             height: 8vh;
             width: 10vh;
             padding-top: 10px !important;
         }
-    </style>
+    </style> --}}
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Citas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#tratamientos">Tratamientos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Productos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Nosotros</a>
-            </li>
-        </ul>
-        <button class="btn btn-outline-primary btn-lg my-2 my-sm-0 ml-5" type="submit">RESERVA AQUÍ</button>
+        <div class="collapse navbar-collapse box" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Citas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tratamientos">Tratamientos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nosotros</a>
+                </li>
+            </ul>
+            <div class="col col-lg-12 offset-lg-6 col-md-3 col-sm-3 box">
+                <button class="btn btn-outline-primary btn-lg my-2 my-sm-0" type="submit">RESERVA AQUÍ</button>
+            </div>
+        </div>
     </div>
 </nav>
