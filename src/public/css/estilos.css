@@ -1,4 +1,4 @@
-.box{
+.box {
   border: 2px dotted red;
 }
 
@@ -27,6 +27,11 @@
 
 #footer {
   background-color: #c83699;
+  
+  /* position: fixed;
+  height: 200px;
+  bottom: 0;
+  width: 100%; */
 }
 
 #footer a {
