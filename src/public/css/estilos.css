@@ -1,51 +1,50 @@
-.box {
-<<<<<<< HEAD
-  border: 2px dotted red;
-}
-
 #header {
-  background-color: #c83699;
-=======
-	border: 2px dotted red;
->>>>>>> 74901fb4b0cc0bca7a0ee660273de3556eb6a6c7
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
+#tratamientos-text {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 #header img {
-	width: 80px;
-	border: 2px solid #fae2ef;
-	border-radius: 50px;
+  width: 80px;
+  border: 2px solid #fae2ef;
+  border-radius: 50px;
 }
 
 #main .carousel-inner img {
-	max-height: 70vh;
-	object-fit: conver;
+  max-height: 70vh;
+  object-fit: conver;
 }
 
 /* tratamientos */
 
 #tratamientos .card img {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 /* Footer */
 
 #footer {
-<<<<<<< HEAD
-  background-color: #c83699;
-  
-  /* position: fixed;
-  height: 200px;
+  background-color: #e3e5e4;
+  color: black;
+  /* overflow: hidden;
+  position: fixed;
   bottom: 0;
   width: 100%; */
-=======
-	background-color: #c83699;
->>>>>>> 74901fb4b0cc0bca7a0ee660273de3556eb6a6c7
 }
 
 #footer a {
-	color: white;
+  color: rosybrown;
 }
 
 /* .img{
   background-image: url('../images/carousel-1.jpg');
 } */
+
+.btn-fun2lash {
+  background-color: white;
+  color: black;
+  border-color: gray;
+}
