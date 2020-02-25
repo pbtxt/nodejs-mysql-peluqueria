@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 
 router.post('/add', async (req, res) => {
   const { id_tratamiento, fecha_reservada, hora_reservada } = req.body
+  var hora_fin
   var costo_reserva = 30
   if (id_tratamiento == 5) {
     costo_reserva = 60
@@ -25,22 +26,19 @@ router.post('/add', async (req, res) => {
     fecha_reservada: `${fecha_reservada} ${hora_reservada}`
   }
 
-  // dt.setMinutes(dt.getMinutes() + 30);
-  // prueba fecha con 2020-01-30
-  console.log(`${fecha_reservada} ${hora_reservada}`)
   const ocupado = await pool.query(
-    'SELECT hora_fin FROM agenda WHERE fecha_reservada =' + hora_reservada
+    'SELECT count(*) as a FROM reservas WHERE fecha_reservada =' +
+      `'${fecha_reservada} ${hora_reservada}:00'`
   )
-  //generar agenda, id_reserva, id_estilista -validar estilista libre, fecha_reservada, hora_reservada, hora_fin -validar duracion tratamiento-
-  //   await pool.query("INSERT INTO reservas SET ?", [newReserva]);
-  //   const id_reserva = await pool.query(
-  //     "SELECT MAX(id_reserva) as id_reserva FROM reservas"
-  //   );
-  //validar disp estilista
-  //   const especialista_disp = await pool.query(`select id_estilista from agenda where fecha_reservada = ${newReserva.fecha_reservada} && hora_fin = ${hora_fin}`)
+  if (ocupado[0].a > 2) {
+    res.send('espacio ocupado')
+  } else {
+    //hacer reserva y agendar
+    await pool.query('INSERT INTO reservas SET ?', [newReserva])
+    res.send('recived')
+  }
+
   console.log(newReserva)
-  // console.log(hora_fin);
-  res.send('recived')
 })
 
 module.exports = router

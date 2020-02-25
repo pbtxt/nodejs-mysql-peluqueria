@@ -28,7 +28,7 @@ CREATE TABLE reservas (
     fecha_cancelacion DATETIME,
     costo_reserva FLOAT NOT NULL DEFAULT 30.0,
     cancelado ENUM
-('SI','NO') NOT NULL
+('SI','NO') NOT NULL DEFAULT 'NO'
 );
 
 CREATE TABLE tratamientos (
