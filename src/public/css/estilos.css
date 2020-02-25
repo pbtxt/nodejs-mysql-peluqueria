@@ -48,3 +48,11 @@
   color: black;
   border-color: gray;
 }
+
+#card-reservas .img-logo {
+  width: 250px;
+  /* max-width: 100%; */
+  border: 2px solid #fae2ef;
+  border-radius: 150px;
+  
+}

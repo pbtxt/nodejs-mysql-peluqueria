@@ -1,10 +1,11 @@
 <div class="container p-4">
     <div class="row">
         <div class="col-md-4 mx-auto">
-            <div class="card">
+            <div class="card" id="card-reservas">
                 <div class="card-body">
                     <form action="/reservas/add" method="POST">
-                        <p>Reservar</p>
+                        <img class="img-logo" src="/images/logo.jpg" alt="logo">
+                        <h2 class="card-title text-uppercase">Reservar</h2>
                         <a href="">Tratamientos: </a>
                         <select name="id_tratamiento">
                             <option value="{{id_tratamiento}}" selected="selected">Seleccionar: </option>

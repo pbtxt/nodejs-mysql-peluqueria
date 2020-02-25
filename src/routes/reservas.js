@@ -8,8 +8,11 @@ router.get('/add', async (req, res) => {
   res.render('reservas/add', { tratamientos: tratamientos })
 })
 
-router.get('/', (req, res) => {
-  res.render('reservas/list')
+router.get('/', async (req, res) => {
+  const reservas = await pool.query(
+    'select nombre_tratamiento,fecha_reservada, costo_reserva from reservas as a, tratamientos as t where a.id_tratamiento=t.id_tratamiento'
+  )
+  res.render('reservas/list', { reservas })
 })
 
 router.post('/add', async (req, res) => {
