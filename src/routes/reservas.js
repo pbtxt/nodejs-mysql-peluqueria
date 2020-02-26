@@ -38,7 +38,7 @@ router.post('/add', async (req, res) => {
   } else {
     //hacer reserva y agendar
     await pool.query('INSERT INTO reservas SET ?', [newReserva])
-    res.send('recived')
+    res.redirect('/reservas')
   }
 
   console.log(newReserva)
