@@ -31,12 +31,11 @@
 /* Footer */
 
 #footer {
-  background-color: #e3e5e4;
-  color: black;
-  /* overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  width: 100%; */
+  clear: both; 
+  position: relative; 
+  z-index: 1; 
+  height: -3em;
+  margin-top: 40em; 
 }
 
 #footer a {
