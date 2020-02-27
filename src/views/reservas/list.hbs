@@ -9,10 +9,17 @@
                     </h3>
                     <p class="m-2">Fecha Reservada:</p>
                     <a href=""> {{moment fecha_reservada}}</a>
-                    <p>Estatus: Activo</p>
-                    <a href="" class="btn btn-secondary"> Detalles</a>
-                    <a href="" class="btn btn-danger"> Cancelar Reserva</a>
+                    <p>Estatus cancelación: {{cancelado}}</p>
+                    <a href="/reservas/editar/{{id_reserva}}" class="btn btn-secondary"> Editar </a>
+                    <a href="/reservas/cancelar/{{id_reserva}}" class="btn btn-danger"> Cancelar Reserva</a>
                 </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>Aún no tienes reservas.</p>
+                <a href="/reservas/add">Reserva ya y vive una gran experiencia Fun2Lash!</a>
             </div>
         </div>
         {{/each}}

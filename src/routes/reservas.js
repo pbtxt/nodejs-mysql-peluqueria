@@ -10,7 +10,7 @@ router.get('/add', async (req, res) => {
 
 router.get('/', async (req, res) => {
   const reservas = await pool.query(
-    'select nombre_tratamiento,fecha_reservada, costo_reserva from reservas as a, tratamientos as t where a.id_tratamiento=t.id_tratamiento'
+    'select id_reserva, nombre_tratamiento,fecha_reservada, costo_reserva, cancelado from reservas as a, tratamientos as t where a.id_tratamiento=t.id_tratamiento'
   )
   res.render('reservas/list', { reservas })
 })
@@ -44,4 +44,34 @@ router.post('/add', async (req, res) => {
   console.log(newReserva)
 })
 
+router.get('/cancelar/:id_reserva', async (req, res) => {
+  var n = new Date()
+  var y = n.getFullYear()
+  var m = n.getMonth() + 1
+  if (m < 10) {
+    m = '0' + m
+  }
+  var d = n.getDate()
+  if (d < 10) {
+    d = '0' + d
+  }
+  var hour = n.getHours()
+  var min = n.getMinutes()
+  const fecha_cancelacion =
+    y + '-' + m + '-' + d + ' ' + hour + ':' + min + ':00'
+  console.log('fecha cancelacion' + fecha_cancelacion)
+  const { id_reserva } = req.params
+  await pool.query(
+    'UPDATE reservas SET cancelado="SI", fecha_cancelacion=? where id_reserva=?',
+    [fecha_cancelacion, id_reserva]
+  )
+  res.redirect('/reservas')
+})
+
+router.get('/editar/:id_reserva', async (req, res) => {
+  const { id_reserva } = req.params
+  const reserva = await pool.query('SELECT * FROM reservas WHERE id_reserva=?',[id_reserva])
+  console.log(reserva[0])
+  res.render('reservas/edit', {reserva:reserva[0]})
+})
 module.exports = router
