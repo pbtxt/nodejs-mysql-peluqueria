@@ -38,6 +38,7 @@ router.post('/add', async (req, res) => {
   } else {
     //hacer reserva y agendar
     await pool.query('INSERT INTO reservas SET ?', [newReserva])
+    req.flash('success', 'Reserva creada correctamente')
     res.redirect('/reservas')
   }
 
@@ -65,13 +66,21 @@ router.get('/cancelar/:id_reserva', async (req, res) => {
     'UPDATE reservas SET cancelado="SI", fecha_cancelacion=? where id_reserva=?',
     [fecha_cancelacion, id_reserva]
   )
+  req.flash('success', 'Reserva cancelada correctamente')
   res.redirect('/reservas')
 })
 
-router.get('/editar/:id_reserva', async (req, res) => {
+// router.get('/editar/:id_reserva', async (req, res) => {
+//   const { id_reserva } = req.params
+//   const reserva = await pool.query('SELECT * FROM reservas WHERE id_reserva=?',[id_reserva])
+//   console.log(reserva[0])
+//   res.render('reservas/edit', {reserva:reserva[0]})
+// })
+
+router.get('/detalles/:id_reserva', async (req, res) => {
   const { id_reserva } = req.params
-  const reserva = await pool.query('SELECT * FROM reservas WHERE id_reserva=?',[id_reserva])
-  console.log(reserva[0])
+  const reserva = await pool.query('select r.id_tratamiento, r.costo_reserva, r.fecha_reservada, r.fecha_reserva, t.nombre_tratamiento from reservas r, tratamientos t where id_reserva=? and r.id_tratamiento = t.id_tratamiento', [id_reserva])
   res.render('reservas/edit', {reserva:reserva[0]})
 })
+
 module.exports = router

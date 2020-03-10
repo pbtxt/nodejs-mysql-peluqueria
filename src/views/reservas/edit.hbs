@@ -5,30 +5,18 @@
                 <div class="card-body">
                     <form action="/reservas/add" method="POST">
                         <img class="img-logo" src="/images/logo.jpg" alt="logo">
-                        <h2 class="card-title text-uppercase">Reservar</h2>
-                        <a href="">Tratamientos: </a>
-                        <select name="id_tratamiento">
-                            <option value="{{id_tratamiento}}" selected="selected" >Seleccionar: </option>
-                            {{#each tratamientos}}
-                            <option value='{{id_tratamiento}}'>{{nombre_tratamiento}} {{duracion_tratamiento}} minutos
-                            </option>
-                            {{/each}}
-                        </select>
-                        <p></p>
-                        <a href="">Fecha a reservar</a>
+                        <h2 class="card-title text-uppercase">Detalles de la reserva</h2>
                         <div class="form-group">
-                            <input type="date" min={{today}} name="fecha_reservada" class="form-control"
-                                placeholder="Fecha">
-                        </div>
-                        <a href="">Hora deseada</a>
-                        <div class="form-group">
-                            <input type="time" name="hora_reservada" min="09:00" max="18:00" step="1800"
-                                class="form-control">
+                            <input type="text" value="{{reserva.nombre_tratamiento}}" class=" form-control">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-success btn-block">
-                                Guardar
-                            </button>
+                            <input type="text" value="{{reserva.costo_reserva}}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{moment reserva.fecha_reservada}}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="{{moment reserva.fecha_reserva}}" class="form-control">
                         </div>
                     </form>
                 </div>
