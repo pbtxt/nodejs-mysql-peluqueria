@@ -12,9 +12,25 @@ passport.use(
       passReqToCallback: true
     },
     async (req, username, password, done) => {
-      console.log(req.body)
-      console.log(username)
-      console.log(password)
+      const filas = await pool.query(
+        'select * from usuarios where username=?',
+        [username]
+      )
+      if (filas.length > 0) {
+        const user = filas[0]
+        const validPassword = await helpers.matchPassword(
+          password,
+          user.password
+        )
+
+        if (validPassword) {
+          done(null, user, req.flash('success','Bienvenido' + user.username))
+        } else {
+          done(null, false, req.flash('message','Contraseña invalidos'))
+        }
+      } else {
+        return done(null, false, req.flash('message','Usuario no encontrado'))
+      }
     }
   )
 )

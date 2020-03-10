@@ -1,21 +1,22 @@
 const express = require('express')
 const router = express.Router()
+const { isLoggedIn } = require('../lib/auth')
 
 const pool = require('../database')
 
-router.get('/add', async (req, res) => {
+router.get('/add', isLoggedIn, async (req, res) => {
   const tratamientos = await pool.query('SELECT * FROM tratamientos')
   res.render('reservas/add', { tratamientos: tratamientos })
 })
 
-router.get('/', async (req, res) => {
+router.get('/', isLoggedIn, async (req, res) => {
   const reservas = await pool.query(
-    'select id_reserva, nombre_tratamiento,fecha_reservada, costo_reserva, cancelado from reservas as a, tratamientos as t where a.id_tratamiento=t.id_tratamiento'
+    'select id_reserva, nombre_tratamiento,fecha_reservada, costo_reserva, cancelado from reservas as a, tratamientos as t where a.id_tratamiento=t.id_tratamiento and a.id_usuario=?',[req.user.id_usuario]
   )
   res.render('reservas/list', { reservas })
 })
 
-router.post('/add', async (req, res) => {
+router.post('/add', isLoggedIn, async (req, res) => {
   const { id_tratamiento, fecha_reservada, hora_reservada } = req.body
   var hora_fin
   var costo_reserva = 30
@@ -23,7 +24,7 @@ router.post('/add', async (req, res) => {
     costo_reserva = 60
   }
   const newReserva = {
-    id_usuario: 1,
+    id_usuario: req.user.id_usuario,
     id_tratamiento,
     costo_reserva,
     fecha_reservada: `${fecha_reservada} ${hora_reservada}`
@@ -45,7 +46,7 @@ router.post('/add', async (req, res) => {
   console.log(newReserva)
 })
 
-router.get('/cancelar/:id_reserva', async (req, res) => {
+router.get('/cancelar/:id_reserva', isLoggedIn, async (req, res) => {
   var n = new Date()
   var y = n.getFullYear()
   var m = n.getMonth() + 1
@@ -77,7 +78,7 @@ router.get('/cancelar/:id_reserva', async (req, res) => {
 //   res.render('reservas/edit', {reserva:reserva[0]})
 // })
 
-router.get('/detalles/:id_reserva', async (req, res) => {
+router.get('/detalles/:id_reserva', isLoggedIn, async (req, res) => {
   const { id_reserva } = req.params
   const reserva = await pool.query('select r.id_tratamiento, r.costo_reserva, r.fecha_reservada, r.fecha_reserva, t.nombre_tratamiento from reservas r, tratamientos t where id_reserva=? and r.id_tratamiento = t.id_tratamiento', [id_reserva])
   res.render('reservas/edit', {reserva:reserva[0]})

@@ -1,34 +1,53 @@
 <nav id="header" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <a class="navbar-brand" href="#">
-        <img src="/images/logo.jpg" alt="fun2lash logo" />
-        Fun2Lash
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-auto">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">RESERVAS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CITAS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#a-tratamientos">TRATAMIENTOS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">PRODUCTOS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">NOSOTROS</a>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-outline-primary btn-lg " type="submit">RESERVA AQUÍ</button>
-                </li>
-            </ul>
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/images/logo.jpg" alt="fun2lash logo" />
+            Fun2Lash
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CITAS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#a-tratamientos">TRATAMIENTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">PRODUCTOS</a>
+                    </li>
+                    {{#if user}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            RESERVAS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/reservas/add">Reservar</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/reservas">Mis reservas</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link"> PERFIL </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link"> Cerrar Sesion </a>
+                    </li>
+                    {{else}}
+                    <li class="nav-item">
+                        <a href="/signin" class="nav-link"> SignIn </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/signup" class="nav-link"> SignUp </a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
