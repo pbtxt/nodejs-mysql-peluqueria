@@ -1,0 +1,24 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each empleados}}
+        <div class="col-12 col-md-6 pb-4">
+            <div class="card text-center">
+                <div class="card-body pb-4">
+                    <h3 class="card-title text-uppercase">
+                        {{nombre_estilista}}
+                    </h3>
+                    <p>Correo: {{correo_estilista}} </p>
+                    <a href="/empleados/eliminar/{{id_estilista}}" class="btn btn-danger"> Eliminar</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No existen empleados.</p>
+                <a href="/empleados/add">Añadir empleados</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

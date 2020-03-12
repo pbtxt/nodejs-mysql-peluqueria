@@ -18,18 +18,19 @@ passport.use(
       )
       if (filas.length > 0) {
         const user = filas[0]
+        const userAdmin = filas[0]
         const validPassword = await helpers.matchPassword(
           password,
           user.password
         )
 
         if (validPassword) {
-          done(null, user, req.flash('success','Bienvenido' + user.username))
+          done(null, user, user.id_usuario, req.flash('success', 'Bienvenido' + user.username))
         } else {
-          done(null, false, req.flash('message','Contraseña invalidos'))
+          done(null, false, req.flash('message', 'Contraseña invalidos'))
         }
       } else {
-        return done(null, false, req.flash('message','Usuario no encontrado'))
+        return done(null, false, req.flash('message', 'Usuario no encontrado'))
       }
     }
   )

@@ -1,0 +1,26 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each tratamientos}}
+        <div class="col-12 col-md-6 pb-4">
+            <div class="card text-center">
+                <div class="card-body pb-4">
+                    <h3 class="card-title text-uppercase">
+                        {{nombre_tratamiento}}
+                    </h3>
+                    <p>Duración: {{duracion_tratamiento}} minutos</p>
+                    <p>Costo: {{costo_tratamiento}} $</p>
+                    <a href="/tratamientos/detalles/{{id_tratamiento}}" class="btn btn-secondary"> Detalles </a>
+                    <a href="/tratamientos/eliminar/{{id_tratamiento}}" class="btn btn-danger"> Eliminar</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>Aún no has guardado ningún tratamiento.</p>
+                <a href="/reservas/add">Añadir tratamiento</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

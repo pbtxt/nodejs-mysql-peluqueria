@@ -1,0 +1,26 @@
+<div id="all" class="container p-4">
+    <div class="row">
+        {{#each agenda}}
+        <div class="col-12 col-md-6 pb-4">
+            <div class="card text-center">
+                <div class="card-body pb-4">
+                    <h3 class="card-title text-uppercase">
+                        {{nombre_tratamiento}}
+                    </h3>
+                    <p class="m-2">Fecha Reservada:</p>
+                    <a href=""> {{moment fecha_reservada}}</a>
+                    <p>Estatus cancelación: {{cancelado}}</p>
+                    <a href="/reservas/detalles/{{id_reserva}}" class="btn btn-secondary"> Detalles </a>
+                    <a href="/reservas/cancelar/{{id_reserva}}" class="btn btn-danger"> Cancelar Reserva</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>Aún no hay reservas para el día de hoy.</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

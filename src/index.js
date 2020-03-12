@@ -54,9 +54,11 @@ app.use((req, res, next) => {
 //Routes
 app.use(require('./routes/index.js'))
 app.use(require('./routes/authentication.js'))
-app.use('/citas', require('./routes/citas.js'))
+app.use('/agenda', require('./routes/agenda'))
 app.use('/usuarios', require('./routes/usuarios'))
 app.use('/reservas', require('./routes/reservas'))
+app.use('/tratamientos', require('./routes/tratamientos'))
+app.use('/empleados', require('./routes/empleados'))
 
 //public
 app.use(express.static(path.join(__dirname, 'public')))
