@@ -16,16 +16,27 @@ helpers.today = () => {
   var n = new Date()
   var y = n.getFullYear()
   var m = n.getMonth() + 1
-  if (m<10){
-      m='0'+m
+  if (m < 10) {
+    m = '0' + m
   }
   var d = n.getDate()
-  if (d<10){
-      d='0'+d
+  if (d < 10) {
+    d = '0' + d
   }
   const date = y + '-' + m + '-' + d
-  console.log(date)
   return date
+}
+
+helpers.hours = () => {
+  var n = new Date()
+  var hh = n.getHours()
+  return hh
+}
+
+helpers.minutes = () => {
+  var n = new Date()
+  var mm = n.getMinutes()
+  return mm
 }
 
 module.exports = helpers

@@ -1,14 +1,15 @@
-<div class="container p-4">
+<div class="container p-2">
     <div class="row">
         <div class="col-md-6 col-lg-4 col-xl-4 mx-auto">
-            <div class="card" id="card-reservas">
+            <div class="card text-center" id="card-reservas">
                 <div class="card-body">
                     <form action="/reservas/add" method="POST">
-                        <img class="img-logo mx-auto d-block" src="/images/logo.jpg" alt="logo">
+                        <img class="card-img-top mx-auto m-2 rounded-circle w-50 mb-4" src="/images/logo.jpg"
+                            alt="logo">
                         <h2 class="card-title text-uppercase">Reservar</h2>
                         <h5>Tratamientos:</h5>
                         {{!-- <a href="">Tratamientos: </a> --}}
-                        <select name="id_tratamiento">
+                        <select name="id_tratamiento" class="form-group">
                             <option value="{{id_tratamiento}}" selected="selected">Seleccionar: </option>
                             {{#each tratamientos}}
                             <option value='{{id_tratamiento}}'>{{nombre_tratamiento}} {{duracion_tratamiento}} minutos

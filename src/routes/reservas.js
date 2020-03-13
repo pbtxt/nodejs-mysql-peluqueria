@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { isLoggedIn } = require('../lib/auth')
+const { hours, minutes, today } = require('../lib/handlebars')
 
 const pool = require('../database')
 
@@ -11,7 +12,8 @@ router.get('/add', isLoggedIn, async (req, res) => {
 
 router.get('/', isLoggedIn, async (req, res) => {
   const reservas = await pool.query(
-    'select id_reserva, nombre_tratamiento,fecha_reservada, costo_reserva, cancelado from reservas as a, tratamientos as t where a.id_tratamiento=t.id_tratamiento and a.id_usuario=?',[req.user.id_usuario]
+    'select id_reserva, nombre_tratamiento,fecha_reservada, costo_reserva, cancelado from reservas as a, tratamientos as t where a.id_tratamiento=t.id_tratamiento and a.id_usuario=?',
+    [req.user.id_usuario]
   )
   res.render('reservas/list', { reservas })
 })
@@ -30,20 +32,47 @@ router.post('/add', isLoggedIn, async (req, res) => {
     fecha_reservada: `${fecha_reservada} ${hora_reservada}`
   }
 
-  const ocupado = await pool.query(
-    'SELECT count(*) as a FROM reservas WHERE fecha_reservada =' +
-      `'${fecha_reservada} ${hora_reservada}:00'`
-  )
-  if (ocupado[0].a > 2) {
-    res.send('espacio ocupado')
-  } else {
-    //hacer reserva y agendar
-    await pool.query('INSERT INTO reservas SET ?', [newReserva])
-    req.flash('success', 'Reserva creada correctamente')
-    res.redirect('/reservas')
-  }
+  // if (fecha_reservada == today()) {
+  //   var hh = hora_reservada.split(':')
+  //   console.log(hh[0])
+  //   if (hours() > hh[0]) {
+  //     req.flash('message', 'Uy! Ya no puedes reservar para esa hora')
+  //     res.redirect('/reservas/add')
+  //   }
+  // }
 
-  console.log(newReserva)
+  const tiempo_valido = () => {
+    if (fecha_reservada == today()) {
+      var hh = hora_reservada.split(':')
+      console.log(hh[0])
+      if (hours() > hh[0]) {
+        return false
+      } else if (hours() == hh[0]) {
+        if (minutes() > hh[1]) {
+          return false
+        } else return true
+      } else return true
+    }
+  }
+  if (tiempo_valido() == true) {
+    const ocupado = await pool.query(
+      'SELECT count(*) as a FROM reservas WHERE fecha_reservada =' +
+        `'${fecha_reservada} ${hora_reservada}:00'`
+    )
+    if (ocupado[0].a > 2) {
+      res.send('espacio ocupado')
+    } else {
+      //hacer reserva y agendar
+      await pool.query('INSERT INTO reservas SET ?', [newReserva])
+      req.flash('success', 'Reserva creada correctamente')
+      res.redirect('/reservas')
+    }
+    // realizar cita
+    console.log(newReserva)
+  } else {
+    req.flash('message', 'Uy! Ya no puedes reservar para esa hora')
+    res.redirect('/reservas/add')
+  }
 })
 
 router.get('/cancelar/:id_reserva', isLoggedIn, async (req, res) => {
@@ -80,8 +109,11 @@ router.get('/cancelar/:id_reserva', isLoggedIn, async (req, res) => {
 
 router.get('/detalles/:id_reserva', isLoggedIn, async (req, res) => {
   const { id_reserva } = req.params
-  const reserva = await pool.query('select r.id_tratamiento, r.costo_reserva, r.fecha_reservada, r.fecha_reserva, t.nombre_tratamiento from reservas r, tratamientos t where id_reserva=? and r.id_tratamiento = t.id_tratamiento', [id_reserva])
-  res.render('reservas/edit', {reserva:reserva[0]})
+  const reserva = await pool.query(
+    'select r.id_tratamiento, r.costo_reserva, r.fecha_reservada, r.fecha_reserva, t.nombre_tratamiento from reservas r, tratamientos t where id_reserva=? and r.id_tratamiento = t.id_tratamiento',
+    [id_reserva]
+  )
+  res.render('reservas/edit', { reserva: reserva[0] })
 })
 
 module.exports = router
