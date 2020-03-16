@@ -42,7 +42,9 @@ router.post('/add', isLoggedIn, async (req, res) => {
   // }
 
   const tiempo_valido = () => {
-    if (fecha_reservada == today()) {
+    if (fecha_reservada != today()) {
+      return true
+    } else if (fecha_reservada == today()) {
       var hh = hora_reservada.split(':')
       console.log(hh[0])
       if (hours() > hh[0]) {
